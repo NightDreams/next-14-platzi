@@ -1,31 +1,35 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import Link from 'next/link';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Future World',
-}
+	title: 'Future World',
+};
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-
-        <header>
-          <nav>
-            <ul>
-              <li>Home</li>
-              <li>Store</li>
-            </ul>
-          </nav>
-        </header>
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en">
+			<body className={inter.className}>
+				<header>
+					<nav>
+						<ul>
+							<Link href="/">
+								<li>Home</li>
+							</Link>
+							<Link href="/store">
+								<li>Store</li>
+							</Link>
+						</ul>
+					</nav>
+				</header>
+			</body>
+		</html>
+	);
 }
