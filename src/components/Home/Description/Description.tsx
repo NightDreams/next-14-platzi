@@ -1,10 +1,16 @@
+import Image from 'next/image';
 import styles from './Description.module.sass';
 interface DescriptionProps {}
 
 export const Description = (props: DescriptionProps) => {
 	return (
 		<section className={styles.Description}>
-			<img src="/images/description.jpeg" alt="products marketplace" />
+			<Image
+				src="/images/description.jpeg"
+				alt="products marketplace"
+				width={500}
+				height={300}
+			/>
 			<div className={styles.Description__text}>
 				<h2>Bring the future today</h2>
 				<p>
