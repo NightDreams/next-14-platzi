@@ -28,6 +28,7 @@ export const Description = (props: DescriptionProps) => {
 						src="/images/description.jpeg"
 						alt="products marketplace"
 						fill
+						sizes="500px"
 						placeholder="blur"
 						blurDataURL={PLACEHOLDER_IMAGE}
 					/>
