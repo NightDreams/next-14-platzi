@@ -1,5 +1,5 @@
 import { ProductsWrapper } from '@/components/store/ProductsWrapper';
-import { getProducts } from '@/services/shopify';
+import { getProducts } from '@/services/shopify/products';
 
 type CategoryProps = {
 	params: {
