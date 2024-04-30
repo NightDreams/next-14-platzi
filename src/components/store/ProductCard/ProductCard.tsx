@@ -8,7 +8,7 @@ interface TProductCard {
 }
 
 export const ProductCard = ({ product }: TProductCard) => {
-	const productLink = `/articulo/${product.handle}?id=${product.id}`;
+	const productLink = `/product/${product.handle}?id=${product.id}`;
 
 	return (
 		<Link href={productLink} className={styles.ProductCard__link}>
