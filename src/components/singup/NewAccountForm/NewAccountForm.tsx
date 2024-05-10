@@ -1,15 +1,28 @@
 'use client';
 
 import { handleCreateUser } from '@/actions';
-import { DetailedHTMLProps, FormHTMLAttributes, useState } from 'react';
+import {
+	BaseSyntheticEvent,
+	DetailedHTMLProps,
+	FormEvent,
+	FormEventHandler,
+	FormHTMLAttributes,
+	MouseEvent,
+	useState,
+} from 'react';
 import styles from './NewAccountForm.module.sass';
 
 export const NewAccountForm = () => {
 	const [errors, setErrors] = useState<string[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 
-	const handleSubmit = (event: any) => {
+	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+
+		if (!(event.target instanceof HTMLFormElement)) {
+			return;
+		}
+
 		const formData = new FormData(event.target);
 		handleCreateUser(formData);
 	};
