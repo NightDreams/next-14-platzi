@@ -16,7 +16,7 @@ export const NewAccountForm = () => {
 	const [errors, setErrors] = useState<string[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		if (!(event.target instanceof HTMLFormElement)) {
@@ -24,7 +24,7 @@ export const NewAccountForm = () => {
 		}
 
 		const formData = new FormData(event.target);
-		handleCreateUser(formData);
+		await handleCreateUser(formData);
 	};
 
 	return (
@@ -33,13 +33,13 @@ export const NewAccountForm = () => {
 			<form onSubmit={handleSubmit} className={styles.NewAccountForm__form}>
 				<input
 					type="text"
-					name="first_name"
+					name="firstName"
 					placeholder="Name"
 					disabled={loading}
 				/>
 				<input
 					type="text"
-					name="last_name"
+					name="lastName"
 					placeholder="Lastname"
 					disabled={loading}
 				/>
