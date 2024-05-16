@@ -6,7 +6,7 @@ interface MainProductsProps {}
 
 export const MainProducts = async ({}: MainProductsProps) => {
 	const products = await getMainProducts();
-	console.log('🚀 ~ MainProducts ~ products:', products);
+	// console.log('🚀 ~ MainProducts ~ products:', products);
 
 	return (
 		<section className={styles.MainProducts}>
@@ -22,8 +22,6 @@ export const MainProducts = async ({}: MainProductsProps) => {
 					);
 				})}
 			</div>
-
-			<h1>MainProducts</h1>
 		</section>
 	);
 };

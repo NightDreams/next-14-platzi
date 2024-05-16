@@ -1,19 +1,16 @@
-'use client';
 import { ProductViewItemsOrder } from './ProductViewItemsOrder';
 import styles from './ProductView.module.sass';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { SanitizeHTML } from '@/components/shared/SanitizeHTML';
+import { redirect } from 'next/navigation';
 
 interface ProductViewProps {
 	product: ProductType;
 }
 
 export const ProductView = ({ product }: ProductViewProps) => {
-	const router = useRouter();
-
 	if (!product) {
-		router.push('/');
+		redirect('/store');
 	}
 
 	return (
