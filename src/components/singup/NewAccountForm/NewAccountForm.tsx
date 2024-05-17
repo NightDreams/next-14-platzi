@@ -1,15 +1,7 @@
 'use client';
 
 import { handleCreateUser } from '@/actions';
-import {
-	BaseSyntheticEvent,
-	DetailedHTMLProps,
-	FormEvent,
-	FormEventHandler,
-	FormHTMLAttributes,
-	MouseEvent,
-	useState,
-} from 'react';
+import { FormEvent, useState } from 'react';
 import styles from './NewAccountForm.module.sass';
 
 export const NewAccountForm = () => {
