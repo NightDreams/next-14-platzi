@@ -4,8 +4,9 @@ import { FaShoppingCart } from 'react-icons/fa';
 import styles from './ShoppingCart.module.sass';
 import { useShoppingCart } from '@/hooks/useShoppingCart';
 import { ShoppingCartItem } from './item/ShoppingCartItem';
+import { handleCreateCart } from '@/actions';
 
-export function ShoppingCart() {
+export default function ShoppingCart() {
 	const { cart } = useShoppingCart();
 	const [isBuying, setIsBuying] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,20 @@ export function ShoppingCart() {
 			setIsOpen(!isOpen);
 		}
 	};
+	const handleBuy = async () => {
+		try {
+			setIsBuying(true);
+			const checkoutUrl = await handleCreateCart(cart);
+			if (!checkoutUrl) throw new Error('Error creating checkout');
+			window.localStorage.removeItem('cart');
+			window.location.href = checkoutUrl;
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsBuying(false);
+		}
+	};
+
 	return (
 		<div className={styles.ShoppingCart}>
 			{hasItems && (
@@ -32,6 +47,7 @@ export function ShoppingCart() {
 					<button
 						className={styles.ShoppingCart__buyButton}
 						disabled={isBuying}
+						onClick={handleBuy}
 					>
 						Buy
 					</button>
