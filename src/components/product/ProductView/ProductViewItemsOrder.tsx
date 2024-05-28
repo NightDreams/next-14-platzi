@@ -25,6 +25,7 @@ export const ProductViewItemsOrder = ({
 			price,
 			quantity,
 			image: product.image,
+			merchandiseId: product.gql_id,
 		});
 	};
 	const handleSubmit = (event: SyntheticEvent) => {

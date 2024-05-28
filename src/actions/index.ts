@@ -1,9 +1,13 @@
 'use server';
+/// [graphql]
 import { GraphQLClientSingleton } from '@/graphql';
+import { createCartMutation } from '@/graphql/mutations/createCartMutation';
 import { createUserMutation } from '@/graphql/mutations/createUserMutation';
-
+/// [utils]
 import { createAccessToken } from '@/utils/auth/createAccessToken';
-import { Enum } from 'graphql-request/alpha/schema';
+import { validateAccessToken } from '@/utils/auth/validateAccessToken';
+/// [next-apis]
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export interface TCustomerCreate {
@@ -67,4 +71,37 @@ export const handleLogin = async (formData: FormData) => {
 	if (accesToken) {
 		redirect('/store');
 	}
+};
+export const handleCreateCart = async (items: CartItem[]) => {
+	const cookiesStore = cookies();
+	const accesToken = cookiesStore.get('accessToken')?.value as string;
+
+	if (!accesToken) redirect('/login');
+
+	const graphqlClient = GraphQLClientSingleton.getInstance().getClient();
+	const customer = await validateAccessToken();
+	const variables = {
+		input: {
+			buyerIdentity: {
+				customerAccessToken: accesToken,
+				email: customer?.email,
+			},
+			lines: items.map(item => ({
+				merchandiseId: item.merchandiseId,
+				quantity: item.quantity,
+			})),
+		},
+	};
+
+	const {
+		cartCreate,
+	}: {
+		cartCreate?: {
+			cart?: {
+				checkoutUrl: string;
+			};
+		};
+	} = await graphqlClient.request(createCartMutation, variables);
+
+	return cartCreate?.cart?.checkoutUrl;
 };
