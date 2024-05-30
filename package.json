@@ -10,6 +10,8 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@ai-sdk/google": "^0.0.17",
+		"ai": "^3.1.16",
 		"graphql": "^16.8.1",
 		"graphql-request": "^7.0.0",
 		"next": "^14.2.3",
