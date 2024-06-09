@@ -2,18 +2,29 @@
 
 import { useChat } from 'ai/react';
 
-export const Chat = () => {
-	const { messages, input, handleInputChange, handleSubmit, data } = useChat();
+export const Chat = (props: { agent: string }) => {
+	const { messages, input, handleInputChange, handleSubmit, data } = useChat({
+		initialMessages: [
+			{
+				id: '1',
+				role: 'system',
+				content: props.agent,
+			},
+		],
+	});
+
 	return (
 		<div className="pl-16 mt-4 h-screen w-full  max-w-lg flex flex-col">
 			<section className=" space-y-2">
 				{/* {data && <pre>{JSON.stringify(data, null, 2)}</pre>} */}
-				{messages.map(m => (
-					<div key={m.id} className="whitespace-pre-wrap">
-						{m.role === 'user' ? 'User: ' : 'AI: '}
-						{m.content}
-					</div>
-				))}
+				{messages
+					.filter(m => m.role !== 'system')
+					.map(m => (
+						<div key={m.id} className="whitespace-pre-wrap">
+							{m.role === 'user' ? 'User: ' : 'AI: '}
+							{m.content}
+						</div>
+					))}
 			</section>
 
 			<form onSubmit={handleSubmit} className="flex space-x-4 mt-2">
