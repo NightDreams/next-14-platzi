@@ -10,8 +10,7 @@ export default async function ChatPage() {
 
 	return (
 		<>
-			<h1 className="px-16 text-2xl">Chatbot</h1>
-			<Chat agent={agent} />{' '}
+			<Chat agent={agent} />
 		</>
 	);
 }
