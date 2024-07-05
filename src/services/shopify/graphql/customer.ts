@@ -1,5 +1,5 @@
-import { GraphQLClientSingleton } from 'app/graphql';
-import { getOrdersQuery } from 'app/graphql/queries/getOrders';
+import { GraphQLClientSingleton } from '@/graphql';
+import { getOrdersQuery } from '@/graphql/queries/getOrders';
 import { cookies } from 'next/headers';
 
 export const getCustomerOrders = async () => {
