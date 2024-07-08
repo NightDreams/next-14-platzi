@@ -47,12 +47,18 @@ export const handleCreateUser = async (formData: FormData) => {
 		},
 	};
 
-	const { customerCreate } = await graphqlClient.request<TCustomerCreate>(
-		createUserMutation,
-		variables
-	);
-	// log data
-	const { customerUserErrors, customer } = customerCreate;
+	const {
+		customerCreate,
+	}: {
+		customerCreate: {
+			customer: {
+				firstName: string;
+				email: string;
+			};
+		};
+	} = await graphqlClient.request(createUserMutation, variables);
+	const { customer } = customerCreate;
+
 	if (!customer) {
 		await createAccessToken(
 			formDataObject.email as string,

@@ -4,7 +4,7 @@ import { handleCreateUser } from '@/actions';
 import { FormEvent, useState } from 'react';
 import styles from './NewAccountForm.module.sass';
 
-export const NewAccountForm = () => {
+export const NewAccountForm = async () => {
 	const [errors, setErrors] = useState<string[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 

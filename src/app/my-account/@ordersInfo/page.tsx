@@ -1,14 +1,42 @@
 import { getCustomerOrders } from '@/services/shopify/graphql/customer';
-import React from 'react';
+import styles from './OrderInfo.module.sass';
 
+type OrderType = {
+	name: string;
+	orderNumber: number;
+	statusUrl: string;
+	lineItems: {
+		edges: Array<{
+			node: {
+				currentQuantity: number;
+				title: 2;
+			};
+		}>;
+	};
+};
 export default async function page() {
 	const ordersInfo = await getCustomerOrders();
 	return (
 		<div>
+			<h2>Orders</h2>
 			<section>
-				<h2>Orders</h2>
-				{ordersInfo.orders?.map(order => (
-					<p key={order.orderNumber}>{order.orderNumber}</p>
+				{ordersInfo.orders?.map((order: OrderType) => (
+					<a
+						href={order.statusUrl}
+						key={order.orderNumber}
+						className={styles.OrderInfo}
+					>
+						<h3>Order {order.name}</h3>
+						{order.lineItems.edges.map(({ node }) => (
+							<div key={node.title}>
+								<span>{node.title}</span>
+								<span className={styles.OrderInfo__quantity}>
+									x{node.currentQuantity}
+								</span>
+							</div>
+						))}
+						kl
+					</a>
 				))}
 			</section>
 		</div>

@@ -17,10 +17,8 @@ export const Description = (props: DescriptionProps) => {
 				onClick={handleClick}
 				className={
 					hasBorder
-						? // true
-						  styles.Description__buttonBoarder
-						: // false = default
-						  styles.Description__button
+						? styles.Description__buttonBoarder // true
+						: styles.Description__button // false == default
 				}
 			>
 				<div className={styles.Description__imageContainer}>
@@ -37,8 +35,8 @@ export const Description = (props: DescriptionProps) => {
 			<div className={styles.Description__text}>
 				<h2>Bring the future today</h2>
 				<p>
-					Future World: Your Gateway to Tomorrow's Tech! Dive into a world of
-					cutting-edge gadgets and gear. Stay ahead of the curve and redefine
+					Future World: Your Gateway to Tomorrow&apos;s Tech! Dive into a world
+					of cutting-edge gadgets and gear. Stay ahead of the curve and redefine
 					your digital lifestyle with us.
 				</p>
 			</div>
