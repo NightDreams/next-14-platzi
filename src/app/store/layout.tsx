@@ -1,5 +1,6 @@
 import { getCollections } from '@/services/shopify/collections';
 import Link from 'next/link';
+export const runtime = 'edge';
 
 import styles from './StoreLayout.module.sass';
 export default async function Layout({
