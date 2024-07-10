@@ -8,7 +8,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"analyze": "cross-env ANALYZE=true next build"
+		"analyze": "cross-env ANALYZE=true next build",
+		"ts-lint": "tsc --noEmit --incremental --watch"
 	},
 	"dependencies": {
 		"@ai-sdk/google": "^0.0.17",
